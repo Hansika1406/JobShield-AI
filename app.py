@@ -319,22 +319,25 @@ if st.button("🚀 Analyze Job Posting"):
             )
 
 # ---------------- HISTORY ----------------
-st.markdown("---")
-
-st.subheader(
-    "📜 Analysis History"
-)
-
 if os.path.exists(history_file):
 
     history_df = pd.read_csv(
         history_file
     )
 
-    st.dataframe(
-        history_df.tail(10),
-        use_container_width=True
-    )
+    # Show only if history exists
+    if not history_df.empty:
+
+        st.markdown("---")
+
+        with st.expander(
+            "📜 View Analysis History"
+        ):
+
+            st.dataframe(
+                history_df.tail(10),
+                use_container_width=True
+            )
 
 # ---------------- FOOTER ----------------
 st.markdown("---")
